@@ -1,1 +1,1 @@
-<div {{$attributes->merge(['class' => "xl:w-9/12 p-8"])}} >{{$slot}}</div>
+<div {{$attributes->merge(['class' => "xl:w-10/12 p-8"])}} >{{$slot}}</div>

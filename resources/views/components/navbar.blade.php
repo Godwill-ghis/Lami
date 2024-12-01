@@ -1,7 +1,7 @@
 {{-- logo, nav linkd, call to action --}}
 
 <div class="border-b-2 xl:flex justify-center">
-    <nav class=" p-8 flex justify-between items-center text-base text-gray-800 xl:w-8/12 xl:align-center">
+    <nav class=" p-8 flex justify-between items-center text-base text-gray-800 xl:w-10/12 xl:align-center">
 
         <a href="/">
             <x-fwb-o-brain class="w-10 h-10 inline text-yellow-300" />
@@ -24,7 +24,6 @@
             <div class="hidden sm:flex gap-5">
                 {{-- CTA --}}
                 <x-button uri='signup' class="bg-blue-600 text-white hover:bg-blue-500">Sign UP</x-button>
-
                 <x-button uri='signin' class="border border-blue-600 hover:text-blue-500">SignIn</x-button>
             </div>
 
