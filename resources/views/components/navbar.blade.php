@@ -14,9 +14,9 @@
             <ul class="justify-between gap-4 lg:flex hidden">
                 {{-- nav links --}}
                 <x-nav-link uri="/" :active="request()->is('/')">Product</x-nav-link>
-                <x-nav-link uri="pricing" :active="request()->is('pricing')">Pricing</x-nav-link>
-                <x-nav-link uri="contact" :active="request()->is('contact')">Contact</x-nav-link>
-                <x-nav-link uri="company" :active="request()->is('company')">Company</x-nav-link>
+                <x-nav-link uri="#pricing" :active="request()->is('pricing')">Pricing</x-nav-link>
+                <x-nav-link uri="#contact" :active="request()->is('contact')">Contact</x-nav-link>
+                {{-- <x-nav-link uri="company" :active="request()->is('company')">Company</x-nav-link> --}}
             </ul>
         </div>
 

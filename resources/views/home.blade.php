@@ -134,6 +134,85 @@
                     </x-work.card>
                 </div>
             </div>
+            <div class="mt-6 flex flex-col justify-center items-center py-5 px-3 bg-slate-100">
+
+                <h2 class="text-4xl text-gray-800 font-bold">What our user say about us</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <x-testimonials.card image='random-female-face.jpeg'>
+                        <x-slot:testimonial> <span class="text-4xl text-blue-500">"</span>This platform revolutionized
+                            the way I consume content. The depth of
+                            articles
+                            is unmatched! <span class="text-4xl text-blue-500">"</span></x-slot:testimonial>
+                        <x-slot:role>— Sarah L., Science Enthusiast</x-slot:role>
+                    </x-testimonials.card>
+                    <x-testimonials.card image='Face.jpeg'>
+                        <x-slot:testimonial><span class="text-4xl text-blue-500">"</span>As an editor, it's incredibly
+                            rewarding to be compensated for sharing my
+                            expertise. <span class="text-4xl text-blue-500">"</span></x-slot:testimonial>
+                        <x-slot:role>— James K., Tech Blogger</x-slot:role>
+                    </x-testimonials.card>
+                </div>
+            </div>
+            <x-subscription.subscription />
+            <x-contact.contact-form />
+            <div class="bg-gray-50 py-12">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Be Part of the Knowledge Evolution
+                    </h2>
+                    <p class="text-gray-600 mb-8">
+                        Your voice matters! Use our Message Board to suggest new features, request article topics, or
+                        offer feedback
+                        to editors and developers. Together, we’ll build a platform that empowers everyone.
+                    </p>
+                    <div class="flex justify-center">
+                        <a href="/message"
+                            class="inline-block bg-blue-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-600 shadow-lg">
+                            Visit the Message Board
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white py-12">
+                <div class="max-w-4xl mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+                        Frequently Asked Questions
+                    </h2>
+                    <div class="space-y-6">
+                        <!-- Question 1 -->
+                        <div class="border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                                What topics are covered?
+                            </h3>
+                            <p class="text-gray-600">
+                                We offer a wide range of topics, including Science, Programming, Medicine, Engineering,
+                                Arts, and
+                                more.
+                            </p>
+                        </div>
+                        <!-- Question 2 -->
+                        <div class="border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                                How do editors get paid?
+                            </h3>
+                            <p class="text-gray-600">
+                                Editors are compensated based on the number of reads and engagement their articles
+                                generate.
+                            </p>
+                        </div>
+                        <!-- Question 3 -->
+                        <div class="border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                                Can I cancel my subscription anytime?
+                            </h3>
+                            <p class="text-gray-600">
+                                Yes! Subscriptions are flexible and can be canceled at any time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </x-container>
     </main>
+    <x-footer />
 </x-layout>
