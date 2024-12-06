@@ -15,12 +15,12 @@
                     knowledge.</p>
                 <div class="flex gap-5 justify-center items-center">
                     <p class="text-blue-500 text-sm">Start Exploring Today!</p>
-                    <x-button uri='signup'
+                    <x-button uri='/pricing'
                         class="bg-blue-600 text-white hover:bg-blue-500 flex justify-center items-center gap-3">
                         Subscribe Now
                         <x-fwb-o-badge-check class='w-4 h-4' />
                     </x-button>
-                    <x-button uri='signin'
+                    <x-button uri='signup'
                         class="border border-blue-600 hover:text-blue-500 flex justify-center items-center gap-3">
                         Become an Editor
                         <x-fwb-o-bookmark class="w-4 h-4" />

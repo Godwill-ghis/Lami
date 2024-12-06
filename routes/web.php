@@ -6,5 +6,9 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('/pricing', function () {
-    return view('home');
+    return view('pricing');
+});
+
+Route::get('/register', function () {
+    return view('auth.register');
 });

@@ -14,7 +14,7 @@
             <ul class="justify-between gap-4 lg:flex hidden">
                 {{-- nav links --}}
                 <x-nav-link uri="/" :active="request()->is('/')">Product</x-nav-link>
-                <x-nav-link uri="#pricing" :active="request()->is('pricing')">Pricing</x-nav-link>
+                <x-nav-link uri="/pricing" :active="request()->is('pricing')">Pricing</x-nav-link>
                 <x-nav-link uri="#contact" :active="request()->is('contact')">Contact</x-nav-link>
                 {{-- <x-nav-link uri="company" :active="request()->is('company')">Company</x-nav-link> --}}
             </ul>
@@ -23,8 +23,8 @@
         <div class="flex gap-4 justify-center align-middle">
             <div class="hidden sm:flex gap-5">
                 {{-- CTA --}}
-                <x-button uri='signup' class="bg-blue-600 text-white hover:bg-blue-500">Sign UP</x-button>
-                <x-button uri='signin' class="border border-blue-600 hover:text-blue-500">SignIn</x-button>
+                <x-button uri='/pricing' class="bg-blue-600 text-white hover:bg-blue-500">Sign UP</x-button>
+                <x-button uri='/signin' class="border border-blue-600 hover:text-blue-500">SignIn</x-button>
             </div>
 
             <div class="lg:hidden place-content-center">
