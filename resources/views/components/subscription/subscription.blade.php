@@ -73,8 +73,7 @@
                         Community features
                     </li>
                 </ul>
-                <form action="/register" method="POST">
-                    @csrf
+                <form action="/register">
                     <input hidden type="text" name="plan" value="0">
                     <button
                         class="bg-blue-500 text-white text-center font-medium py-2 px-6 rounded-lg hover:bg-blue-600 transition">Subscribe
@@ -115,8 +114,7 @@
                         Priority support
                     </li>
                 </ul>
-                <form action="/register" method="POST">
-                    @csrf
+                <form action="/register">
                     <input hidden type="text" name="plan" value="1">
                     <button
                         class="bg-blue-500 text-white text-center font-medium py-2 px-6 rounded-lg hover:bg-blue-600 transition">Subscribe
@@ -157,8 +155,7 @@
                         Direct support from editors
                     </li>
                 </ul>
-                <form action="/register" method="POST">
-                    @csrf
+                <form action="/register">
                     <input hidden type="text" name="plan" value="2">
                     <button
                         class="bg-blue-500 text-white text-center font-medium py-2 px-6 rounded-lg hover:bg-blue-600 transition">Subscribe
