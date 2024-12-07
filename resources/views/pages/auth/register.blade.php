@@ -23,7 +23,7 @@
                         {{-- <option value="free" {{ old('plan')=='free' ? 'selected' : '' }}>Free</option> --}}
                         @if($plan)
 
-                        <option value="0e" {{ $plan=='0' ? 'selected' : '' }}>Free</option>
+                        <option value="0" {{ $plan=='0' ? 'selected' : '' }}>Free</option>
                         <option value="1" {{ $plan=='1' ? 'selected' : '' }}>Basic</option>
                         <option value="2" {{ $plan=='2' ? 'selected' : '' }}>Premium</option>
 
