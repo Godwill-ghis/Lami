@@ -1,6 +1,7 @@
 <x-layout>
     <main class="xl:flex justify-center">
         <x-container class="space-y-20  mt-6">
+            @guest
             <div class="text-center space-y-10  flex justify-center items-center flex-col">
                 <h1 class="text-4xl font-extrabold text-slate-800/9 xl:w-[70%]">
                     <span class="text-blue-500 block">Empower Your
@@ -212,7 +213,10 @@
                     </div>
                 </div>
             </div>
+            @endguest
+            @auth
+            <h1 class="text-2xl text-green-600 font-bold">{{session('message')}}</h1>
+            @endauth
         </x-container>
     </main>
-    <x-footer />
 </x-layout>

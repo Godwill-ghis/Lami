@@ -11,7 +11,7 @@ class CheckoutController extends Controller
 
     public function index(Request $request)
     {
-        return view('pages.checkout', ['plan' => $request->input('plan')]);
+        return view('pages.checkout', ['plan' => session('plan')]);
     }
 
     public function subscribe()

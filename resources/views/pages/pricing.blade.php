@@ -4,5 +4,4 @@
             <x-subscription.subscription />
     </main>
     </x-container>
-    <x-footer />
 </x-layout>

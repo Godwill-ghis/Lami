@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
-    //
-
     public function create(Request $request): View
     {
         $plan = $request->input('plan');
@@ -25,20 +27,25 @@ class RegisterController extends Controller
             'plan' => ['in:0,1,2', 'numeric']
         ]);
 
-        // dd($data);
-
         $data['plan'] = (int) $data['plan'];
-
-        //register the user
-
-        // Return the user to a checkout page if the user plan is basic(1) or premium(2)
 
         if ($data['plan'] === 1 || $data['plan'] === 2) {
 
-            return to_route('checkout', ['plan' => $data['plan']]);
+            Session::put(['plan' => $data['plan']]);
+            return to_route('checkout');
         }
 
-        return "successfully Logged in";
-        // return to_route('home');
+        $user = User::create(
+            [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'plan' => $data['plan']
+            ]
+        );
+
+        Auth::login($user);
+        Session::put(['message' => 'successfully created an account for : ' . (Auth::user())->name]);
+        return redirect()->route('home');
     }
 }
