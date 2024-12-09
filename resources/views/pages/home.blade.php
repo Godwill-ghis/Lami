@@ -21,7 +21,7 @@
                         Subscribe Now
                         <x-fwb-o-badge-check class='w-4 h-4' />
                     </x-button>
-                    <x-button uri='signup'
+                    <x-button uri='/editor/register'
                         class="border border-blue-600 hover:text-blue-500 flex justify-center items-center gap-3">
                         Become an Editor
                         <x-fwb-o-bookmark class="w-4 h-4" />

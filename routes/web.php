@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\CheckoutController;
+use App\Http\Controllers\Auth\EditorRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
@@ -25,3 +26,6 @@ Route::name('auth.')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware(['guest']);
     Route::post('/register', [RegisterController::class, 'store'])->middleware(['guest']);
 });
+
+Route::get('/editor/register', [EditorRegisterController::class, 'index']);
+Route::post('/editor/register', [EditorRegisterController::class, 'store']);
