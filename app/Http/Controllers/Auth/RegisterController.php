@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserPlan;
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -24,12 +27,13 @@ class RegisterController extends Controller
             'name' => ['required', 'between:4,12', 'alpha_num:ascii'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'between:8,20'],
-            'plan' => ['in:0,1,2', 'numeric']
+            'plan' => ['in:0,1,2', 'numeric'],
+            'role' => ['required', 'string', Rule::enum(UserRole::class)]
         ]);
 
         $data['plan'] = (int) $data['plan'];
 
-        if ($data['plan'] === 1 || $data['plan'] === 2) {
+        if ($data['plan'] === UserPlan::BASIC->value || $data['plan'] === UserPlan::PREMIUM->value) {
 
             Session::put(['plan' => $data['plan']]);
             return to_route('checkout');
@@ -40,7 +44,8 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => $data['password'],
-                'plan' => $data['plan']
+                'plan' => $data['plan'],
+                'role' => $data['role']
             ]
         );
 

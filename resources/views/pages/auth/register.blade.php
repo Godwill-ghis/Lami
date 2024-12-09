@@ -7,10 +7,10 @@
                     @csrf
 
                     <!-- Name -->
-                    <x-auth.input name="name" label="Full Name" type="text" required />
+                    <x-auth.input name="name" label="Full Name" type="text" value="{{ old('name') }}" required />
 
                     <!-- Email -->
-                    <x-auth.input name="email" label="Email Address" type="email" required />
+                    <x-auth.input name="email" label="Email Address" type="email" value="{{ old('email') }}" required />
 
                     <!-- Password -->
                     <x-auth.input name="password" label="Password" type="password" required />
@@ -18,19 +18,21 @@
                     <!-- Confirm Password -->
                     <x-auth.input name="password_confirmation" label="Confirm Password" type="password" required />
 
+                    <x-auth.input name="role" label="" type="text" value="subscriber" hidden />
+
                     <!-- Plan Selection -->
                     <x-auth.select name="plan" label="Select Your Plan" required>
                         {{-- <option value="free" {{ old('plan')=='free' ? 'selected' : '' }}>Free</option> --}}
                         @if($plan)
 
-                        <option value="0" {{ $plan=='0' ? 'selected' : '' }}>Free</option>
-                        <option value="1" {{ $plan=='1' ? 'selected' : '' }}>Basic</option>
-                        <option value="2" {{ $plan=='2' ? 'selected' : '' }}>Premium</option>
+                        <option value='0' {{ $plan==='0' ? 'selected' : '' }}>Free</option>
+                        <option value='1' {{ $plan==='1' ? 'selected' : '' }}>Basic</option>
+                        <option value='2' {{ $plan==='2' ? 'selected' : '' }}>Premium</option>
 
                         @else
-                        <option value="0" {{ old('plan')=='0' ? 'selected' : '' }}>Free</option>
-                        <option value="1" {{ old('plan')=='1' ? 'selected' : '' }}>Basic</option>
-                        <option value="2" {{ old('plan')=='2' ? 'selected' : '' }}>Premium</option>
+                        <option value='0' {{ old('plan')==='0' ? 'selected' : '' }}>Free</option>
+                        <option value='1' {{ old('plan')==='1' ? 'selected' : '' }}>Basic</option>
+                        <option value='2' {{ old('plan')==='2' ? 'selected' : '' }}>Premium</option>
                         @endif
 
                     </x-auth.select>
