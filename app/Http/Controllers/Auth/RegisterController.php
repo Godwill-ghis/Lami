@@ -6,6 +6,7 @@ use App\Enums\UserPlan;
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,16 @@ class RegisterController extends Controller
 
         if ($data['plan'] === UserPlan::BASIC->value || $data['plan'] === UserPlan::PREMIUM->value) {
 
+            $user = User::create(
+                [
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'plan' => $data['plan'],
+                    'role' => $data['role']
+                ]
+            );
+            event(new Registered($user));
             Session::put(['plan' => $data['plan']]);
             return to_route('checkout');
         }
@@ -43,14 +54,16 @@ class RegisterController extends Controller
             [
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'password' => $data['password'],
+                'password' => Hash::make($data['password']),
                 'plan' => $data['plan'],
                 'role' => $data['role']
             ]
         );
 
+        event(new Registered($user));
+
         Auth::login($user);
         Session::put(['message' => 'successfully created an account for : ' . (Auth::user())->name]);
-        return redirect()->route('home');
+        return redirect()->route('verification.notice');
     }
 }
