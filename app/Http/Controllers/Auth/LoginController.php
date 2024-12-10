@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\ValidationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +18,12 @@ class LoginController extends Controller
         return view('pages.auth.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request, ValidationService $validator)
     {
-        $data = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'between:8,20'],
-        ]);
 
-        if (Auth::attempt($data)) {
+        $userData = $validator->validateLogin($request);
+
+        if (Auth::attempt($userData)) {
             $request->session()->regenerate();
 
             Session::put(['message' => 'successfully Logged in: ' . (Auth::user())->name]);
