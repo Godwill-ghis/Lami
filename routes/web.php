@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\CheckoutController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\EditorRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PricingController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,7 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/pricing', function () {
-    return view('pages.pricing');
-})->middleware(['guest'])->name('pricing');
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 
 
 
@@ -33,7 +32,9 @@ Route::middleware(['auth'])->group(
     function () {
 
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-        Route::post('/checkout', [CheckoutController::class, 'subscribe']);
+        Route::post('/checkout', [CheckoutController::class, 'checkout']);
+
+        Route::get('/success', [CheckoutController::class, 'success']);
 
         Route::get('/editor/register', [EditorRegisterController::class, 'index']);
         Route::post('/editor/register', [EditorRegisterController::class, 'store']);

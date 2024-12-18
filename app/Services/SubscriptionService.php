@@ -59,7 +59,7 @@ class SubscriptionService
     {
 
         if ((int)$request->input('plan') === UserPlan::FREE->value) {
-            $isActive = true;
+            $this->isActive = true;
         }
 
         $this->setSubscriptionName($request);

@@ -28,7 +28,7 @@ class LoginController extends Controller
 
             Session::put(['message' => 'successfully Logged in: ' . (Auth::user())->name]);
 
-            return redirect()->route('home');
+            return redirect()->intended(route('home'));
         }
 
         return back()->withErrors(['email' => 'The email you provided did not match our record'])->onlyInput('email');

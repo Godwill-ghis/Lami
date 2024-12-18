@@ -16,6 +16,8 @@ class UserSubscription extends Model
         'subscription_id',
         'is_active',
         'limit_used',
+        'stripe_customer_id',
+        'stripe_subscription_id',
         'start_date',
         'end_date'
     ];
@@ -25,8 +27,12 @@ class UserSubscription extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function subscription(): HasOne
+    protected $cast = [
+        'is_active' => 'boolean',
+    ];
+
+    public function subscription(): BelongsTo
     {
-        return $this->hasOne(Subscription::class);
+        return $this->belongsTo(Subscription::class);
     }
 }

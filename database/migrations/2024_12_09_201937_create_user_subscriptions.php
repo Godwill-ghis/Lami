@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('limit_used');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->string('stripe_customer_id')->nullable();
+            $table->string('stripe_subscription_id')->nullable();
             $table->timestamps();
         });
     }
