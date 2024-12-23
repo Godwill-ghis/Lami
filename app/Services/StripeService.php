@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Models\Payment;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Stripe\StripeClient;
@@ -80,6 +81,16 @@ class StripeService
             );
 
             $user->userSubscription->update(['is_active' => true, 'stripe_subscription_id' => $subscription->id]);
+
+            $amountPaid = $subscription->plan->amount / 100;
+
+            Payment::create([
+                'user_id' => $user->id,
+                'stripe_invoice_id' => $subscription->latest_invoice,
+                'amount' => $amountPaid,
+                'stripe_product_id' => $subscription->plan->product
+
+            ]);
             return view('pages.success', ['subscription' => $user->userSubscription->subscription]);
         }
 
