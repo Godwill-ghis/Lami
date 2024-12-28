@@ -21,10 +21,14 @@ class SubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->plan,
-            'price' => $this->plan === UserPlan::FREE->name ? 0 : ($this->plan === UserPlan::BASIC->name ? 5 : 15),
+            'name' => $this->faker->unique()->randomElement([UserPlan::FREE->name, UserPlan::BASIC->name, UserPlan::PREMIUM->name]),
+            'price' => function (array $attributes) {
+                return $attributes['name'] === UserPlan::FREE->name ? 0.00 : ($attributes['name'] === UserPlan::BASIC->name ? 5.00 : 15.00);
+            },
             'duration_unit' => 'month',
-            'limit' => $this->plan === UserPlan::FREE->name ? 10 : ($this->plan === UserPlan::BASIC->name ? 30 : 0),
+            'limit' => function(array $attributes) {
+                return $attributes['name'] === UserPlan::FREE->name ? 10 : ($attributes['name'] === UserPlan::BASIC->name ? 30 : 0);
+            }
         ];
     }
 }

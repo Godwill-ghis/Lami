@@ -5,7 +5,7 @@
             <x-guest-view />
             @endguest
             @auth
-            <x-dashboard />
+            <x-dashboard :$posts/>
             @endauth
         </x-container>
     </main>

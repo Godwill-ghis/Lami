@@ -12,7 +12,7 @@ class Subscription extends Model
 {
     use HasFactory;
     //
-    use HasUuids;
+    // use HasUuids;
     protected $fillable = [
         'name',
         'price',

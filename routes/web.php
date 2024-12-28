@@ -4,15 +4,14 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\EditorRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PricingController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');

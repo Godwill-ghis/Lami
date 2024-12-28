@@ -30,6 +30,7 @@
                 <x-button uri='/signin' class="border border-blue-600 hover:text-blue-500">SignIn</x-button>
                 @endguest
                 @auth
+                <x-auth.profile />
                 <form action="/signin" method="post">
                     @method('delete')
                     @csrf
