@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -27,6 +29,14 @@ class PostController extends Controller
         }
 
         $posts = Post::all();
+        return view('pages.home', ['posts' => $posts]);
+    }
+
+    public function taggedPosts(Request $request, $tag)
+    {
+        $tag = Tag::where('name', Str::title($tag))->first();
+        $posts = $tag->posts;
+
         return view('pages.home', ['posts' => $posts]);
     }
 
