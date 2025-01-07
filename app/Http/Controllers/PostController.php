@@ -11,7 +11,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
@@ -19,9 +19,17 @@ class PostController extends Controller
             return view('pages.home');
         }
 
+        $query = $request?->query('search');
+
+        if($query) {
+            $posts = Post::where('title', 'like', "%{$query}%")->get();
+            return view('pages.home', ['posts' => $posts]);
+        }
+
         $posts = Post::all();
         return view('pages.home', ['posts' => $posts]);
     }
+
 
     /**
      * Show the form for creating a new resource.

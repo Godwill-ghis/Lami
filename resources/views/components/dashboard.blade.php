@@ -35,6 +35,12 @@
 
 @props(['posts'])
 
+<div class="">
+    <form action="/" class="w-full flex justify-end items-end p-4" method="GET">
+        <input type="text" name="search" id="search" placeholder="Search" class="w-[30%] p-2 border border-gray-300 rounded-lg focus:outline-none">
+    </form>
+</div>
+
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     @foreach ($posts as $post)
         <div class="bg-white shadow-lg rounded-lg p-4">

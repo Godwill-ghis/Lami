@@ -8,6 +8,8 @@ use App\Models\Subscription;
 use App\Models\UserSubscription;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\search;
+
 class PricingController
 {
     public function index(Request $request)
