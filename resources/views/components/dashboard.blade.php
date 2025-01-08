@@ -30,6 +30,14 @@
         'placeholder27.webp',
 
 ]);
+    $profiles = collect([
+        'user.jpg',
+        'random-male-face.png',
+        'random-female-face.jpeg',
+        'Face.jpeg',
+        'app.webp',
+        'app-in-use.jpg',
+]);
     $randomImage = $images->random();
 @endphp
 
@@ -44,7 +52,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     @foreach ($posts as $post)
         <div class="bg-white shadow-lg rounded-lg p-4">
-             <x-post.card :$post :randomimage="$images->random()"/>
+             <x-post.card :$post :randomimage="$images->random()" :randomProfile="$profiles->random()"/>
         </div>
                     
     @endforeach
