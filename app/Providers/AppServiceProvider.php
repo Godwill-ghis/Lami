@@ -5,6 +5,7 @@ namespace App\Providers;
 use app\Services\StripeService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Stripe\StripeClient;
 
@@ -29,5 +30,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Route::bind('tag', function ($value) {
+            return \App\Models\Tag::firstOrFail();
+        });
     }
 }

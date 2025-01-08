@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/tags/{tag:name}', [PostController::class, 'taggedPosts'])->name('tagged-posts');
+Route::get('/tags/{tag}', [PostController::class, 'taggedPosts'])->name('tagged-posts');
 
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 

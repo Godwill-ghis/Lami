@@ -24,18 +24,17 @@ class PostController extends Controller
         $query = $request?->query('search');
 
         if($query) {
-            $posts = Post::where('title', 'like', "%{$query}%")->get();
+            $posts = Post::where('title', 'like', "%{$query}%")->with('tags')->get();
             return view('pages.home', ['posts' => $posts]);
         }
 
-        $posts = Post::all();
+        $posts = Post::with('tags')->get();
         return view('pages.home', ['posts' => $posts]);
     }
 
-    public function taggedPosts(Request $request, $tag)
+    public function taggedPosts(Request $request, Tag $tag)
     {
-        $tag = Tag::where('name', Str::title($tag))->first();
-        $posts = $tag->posts;
+        $posts = $tag->posts()->with('tags')->get();
 
         return view('pages.home', ['posts' => $posts]);
     }
