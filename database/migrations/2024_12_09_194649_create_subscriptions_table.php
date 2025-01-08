@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->enum('name', ['FREE', 'BASIC', 'PREMIUM']);
-            $table->float('price', 2);
+            $table->float('price');
             $table->string('duration_unit');
             $table->integer('limit');
             $table->string('stripe_product_id')->nullable();

@@ -12,11 +12,11 @@ class CheckoutController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->user()->userSubscription->is_active || $request->user()->userSubscription->subscription->name === UserPlan::FREE->name) {
+        if ($request->user()->userSubscription->is_active || $request->user()->subscription->name === UserPlan::FREE->name) {
             return redirect()->route('home');
         }
 
-        $userPlan = $request->user()->userSubscription->subscription;
+        $userPlan = $request->user()->subscription;
 
         return view('pages.checkout', ['plan' => $userPlan]);
     }

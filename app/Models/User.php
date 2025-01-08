@@ -30,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'plan',
-        'role'
+        'role',
+        'subscription_id'
     ];
 
     /**
@@ -63,8 +64,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $this->hasOne(UserSubscription::class);
     }
+    public function subscription(): BelongsTo
+    {
 
-    public function Posts(): HasMany{
+        return $this->belongsTo(Subscription::class);
+    }
+
+    public function posts(): HasMany{
         return $this->hasMany(Post::class);
     }
 }

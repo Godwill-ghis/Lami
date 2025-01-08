@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\UserPlan;
 use App\Enums\UserRole;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -22,13 +24,21 @@ class RegistrationService
     {
 
         $userData = $validator->validateRegister($request);
+        $subscriptionName = null;
+
+        match ((int)$request->input('plan')) {
+            UserPlan::BASIC->value => $subscriptionName = UserPlan::BASIC->name,
+            UserPlan::PREMIUM->value => $subscriptionName = UserPlan::PREMIUM->name,
+            UserPlan::FREE->value => $subscriptionName = UserPlan::FREE->name
+        };
 
         $user = User::create(
             [
                 'name' => $userData['name'],
                 'email' => $userData['email'],
                 'password' => Hash::make($userData['password']),
-                'role' => $userData['role']
+                'role' => $userData['role'],
+                'subscription_id' => Subscription::where('name', $subscriptionName)->get()->first()->id
             ]
         );
 

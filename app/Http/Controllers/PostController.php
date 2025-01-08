@@ -24,17 +24,17 @@ class PostController extends Controller
         $query = $request?->query('search');
 
         if($query) {
-            $posts = Post::where('title', 'like', "%{$query}%")->with('tags')->get();
+            $posts = Post::where('title', 'like', "%{$query}%")->with('tags')->paginate(15);
             return view('pages.home', ['posts' => $posts]);
         }
 
-        $posts = Post::with('tags')->get();
+        $posts = Post::with('tags')->paginate(15);
         return view('pages.home', ['posts' => $posts]);
     }
 
     public function taggedPosts(Request $request, Tag $tag)
     {
-        $posts = $tag->posts()->with('tags')->get();
+        $posts = $tag->posts()->with('tags')->paginate(15);
 
         return view('pages.home', ['posts' => $posts]);
     }

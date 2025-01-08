@@ -23,7 +23,8 @@ class SubscriptionFactory extends Factory
         return [
             'name' => $this->faker->unique()->randomElement([UserPlan::FREE->name, UserPlan::BASIC->name, UserPlan::PREMIUM->name]),
             'price' => function (array $attributes) {
-                return $attributes['name'] === UserPlan::FREE->name ? 0.00 : ($attributes['name'] === UserPlan::BASIC->name ? 5.00 : 15.00);
+                $name = $attributes['name'] ?? 'FREE';
+                return $name === UserPlan::FREE->name ? 0.00 : ($name === UserPlan::BASIC->name ? 5.00 : 15.00);
             },
             'duration_unit' => 'month',
             'limit' => function(array $attributes) {

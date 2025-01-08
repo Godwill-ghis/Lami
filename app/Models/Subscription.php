@@ -20,8 +20,8 @@ class Subscription extends Model
         'limit'
     ];
 
-    public function userSubscriptions(): HasMany
+    public function users(): HasMany
     {
-        return $this->hasMany(UserSubscription::class);
+        return $this->hasMany(User::class);
     }
 }
