@@ -46,6 +46,10 @@ class PostController extends Controller
     public function create()
     {
         //
+
+        $tags = Tag::all();
+
+        return view('pages.make-post', ['tags' => $tags]);
     }
 
     /**
@@ -54,6 +58,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->all());
     }
 
     /**
@@ -62,6 +67,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return view('pages.post', ['post' => $post]);
     }
 
     /**

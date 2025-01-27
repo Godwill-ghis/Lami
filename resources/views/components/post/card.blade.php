@@ -1,9 +1,9 @@
 @props(['post', 'randomimage', 'randomProfile'])
 <x-post.tags :tags="$post->tags" />
     <div >
-        <a href="post/{{$post->slug}}" class="text-gray-800 hover:text-blue-600">  
+        <a href="posts/{{$post->slug}}" class="text-gray-800 hover:text-blue-600">  
             <x-post.image :randomimage="$randomimage" />
-            <x-post.title>{{$post->title}}</x-post.title>
+            <x-post.title :title="$post->title" />
         </a>
         <div class="flex items-center justify-between">
             <a href="/users/{{$post->user->name}}" class="flex items-center gap-2 mt-3">

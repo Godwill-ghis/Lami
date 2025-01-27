@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::get('/tags/{tag}', [PostController::class, 'taggedPosts'])->name('tagged-posts');
+Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware(['auth']);
+Route::post('/posts', [PostController::class, 'store'])->name('post.store')->middleware(['auth']);
 
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 

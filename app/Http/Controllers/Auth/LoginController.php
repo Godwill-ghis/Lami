@@ -8,6 +8,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Events\UserLoggedIn;
+use App\Models\User;
+use App\Mail\UserLoggedIn as UserLoggedInMail;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -23,10 +27,14 @@ class LoginController extends Controller
 
         $userData = $validator->validateLogin($request);
 
+
         if (Auth::attempt($userData)) {
             $request->session()->regenerate();
 
             Session::put(['message' => 'successfully Logged in: ' . (Auth::user())->name]);
+            $user = User::find(Auth::id())->first();
+
+            event(new UserLoggedIn($user));
 
             return redirect()->intended(route('home'));
         }
